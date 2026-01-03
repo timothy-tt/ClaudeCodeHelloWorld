@@ -9,12 +9,11 @@ class BouncingBubble {
 
         this.x = Math.random() * (window.innerWidth - 150);
         this.y = Math.random() * (window.innerHeight - 150);
-        this.vx = (Math.random() - 0.5) * 4;
-        this.vy = (Math.random() - 0.5) * 4;
+        this.vx = (Math.random() - 0.5) * 6;
+        this.vy = (Math.random() - 0.5) * 6;
         this.size = 120;
-        this.gravity = 0.2;
-        this.friction = 0.99;
-        this.bounce = 0.8;
+        this.speed = 3;
+        this.bounce = 0.95;
 
         this.init();
     }
@@ -35,41 +34,51 @@ class BouncingBubble {
     }
 
     animate() {
-        // Apply gravity
-        this.vy += this.gravity;
-
-        // Apply friction
-        this.vx *= this.friction;
-        this.vy *= this.friction;
-
         // Update position
         this.x += this.vx;
         this.y += this.vy;
 
-        // Boundary collision detection
+        // Boundary collision detection with bounce
         const maxX = window.innerWidth - this.size;
         const maxY = window.innerHeight - this.size;
 
         if (this.x <= 0) {
             this.x = 0;
-            this.vx *= -this.bounce;
+            this.vx = Math.abs(this.vx) * this.bounce;
+            this.addRandomness();
         } else if (this.x >= maxX) {
             this.x = maxX;
-            this.vx *= -this.bounce;
+            this.vx = -Math.abs(this.vx) * this.bounce;
+            this.addRandomness();
         }
 
         if (this.y <= 0) {
             this.y = 0;
-            this.vy *= -this.bounce;
+            this.vy = Math.abs(this.vy) * this.bounce;
+            this.addRandomness();
         } else if (this.y >= maxY) {
             this.y = maxY;
-            this.vy *= -this.bounce;
+            this.vy = -Math.abs(this.vy) * this.bounce;
+            this.addRandomness();
+        }
+
+        // Maintain consistent speed
+        const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+        if (currentSpeed > 0) {
+            this.vx = (this.vx / currentSpeed) * this.speed;
+            this.vy = (this.vy / currentSpeed) * this.speed;
         }
 
         // Apply position
         this.bubble.style.transform = `translate(${this.x}px, ${this.y}px)`;
 
         requestAnimationFrame(() => this.animate());
+    }
+
+    addRandomness() {
+        // Add slight random variation to direction on bounce
+        this.vx += (Math.random() - 0.5) * 0.5;
+        this.vy += (Math.random() - 0.5) * 0.5;
     }
 }
 
