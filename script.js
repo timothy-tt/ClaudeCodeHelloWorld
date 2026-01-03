@@ -149,13 +149,25 @@ class BouncingBubble {
         this.bubble = document.querySelector('.bouncing-bubble');
         if (!this.bubble) return;
 
-        this.x = Math.random() * (window.innerWidth - 150);
-        this.y = Math.random() * (window.innerHeight - 150);
-        this.vx = (Math.random() - 0.5) * 6;
-        this.vy = (Math.random() - 0.5) * 6;
+        // Position
+        this.x = window.innerWidth / 2 - 60;
+        this.y = window.innerHeight / 2 - 60;
+        this.targetX = this.x;
+        this.targetY = this.y;
+
+        // Size
         this.size = 120;
-        this.speed = 3;
-        this.bounce = 0.95;
+
+        // Gentle floating
+        this.floatTime = 0;
+        this.floatSpeed = 0.001;
+        this.floatAmplitude = 30;
+
+        // Mouse interaction
+        this.mouseX = window.innerWidth / 2;
+        this.mouseY = window.innerHeight / 2;
+        this.mouseInfluence = 0.15;
+        this.easing = 0.05;
 
         this.init();
     }
@@ -183,8 +195,25 @@ class BouncingBubble {
             }
         });
 
+        this.setupMouseTracking();
         this.animate();
         window.addEventListener('resize', () => this.handleResize());
+    }
+
+    setupMouseTracking() {
+        // Mouse tracking
+        document.addEventListener('mousemove', (e) => {
+            this.mouseX = e.clientX;
+            this.mouseY = e.clientY;
+        });
+
+        // Touch tracking
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                this.mouseX = e.touches[0].clientX;
+                this.mouseY = e.touches[0].clientY;
+            }
+        }, { passive: true });
     }
 
     handleResize() {
@@ -193,54 +222,55 @@ class BouncingBubble {
 
         if (this.x > maxX) this.x = maxX;
         if (this.y > maxY) this.y = maxY;
+        if (this.targetX > maxX) this.targetX = maxX;
+        if (this.targetY > maxY) this.targetY = maxY;
     }
 
     animate() {
-        // Update position
-        this.x += this.vx;
-        this.y += this.vy;
+        this.floatTime += this.floatSpeed;
 
-        // Boundary collision detection with bounce
+        // Calculate gentle floating motion using sine waves
+        const floatX = Math.sin(this.floatTime * 2) * this.floatAmplitude;
+        const floatY = Math.cos(this.floatTime * 1.5) * this.floatAmplitude;
+
+        // Calculate distance from mouse
+        const dx = this.mouseX - (this.x + this.size / 2);
+        const dy = this.mouseY - (this.y + this.size / 2);
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Gentle repulsion from mouse (when close)
+        const repelDistance = 200;
+        let repelX = 0;
+        let repelY = 0;
+
+        if (distance < repelDistance && distance > 0) {
+            const repelStrength = (1 - distance / repelDistance) * 50;
+            repelX = -(dx / distance) * repelStrength;
+            repelY = -(dy / distance) * repelStrength;
+        }
+
+        // Set target position with floating and mouse influence
+        const centerX = window.innerWidth / 2 - this.size / 2;
+        const centerY = window.innerHeight / 2 - this.size / 2;
+
+        this.targetX = centerX + floatX + repelX;
+        this.targetY = centerY + floatY + repelY;
+
+        // Constrain to viewport
         const maxX = window.innerWidth - this.size;
         const maxY = window.innerHeight - this.size;
 
-        if (this.x <= 0) {
-            this.x = 0;
-            this.vx = Math.abs(this.vx) * this.bounce;
-            this.addRandomness();
-        } else if (this.x >= maxX) {
-            this.x = maxX;
-            this.vx = -Math.abs(this.vx) * this.bounce;
-            this.addRandomness();
-        }
+        this.targetX = Math.max(0, Math.min(maxX, this.targetX));
+        this.targetY = Math.max(0, Math.min(maxY, this.targetY));
 
-        if (this.y <= 0) {
-            this.y = 0;
-            this.vy = Math.abs(this.vy) * this.bounce;
-            this.addRandomness();
-        } else if (this.y >= maxY) {
-            this.y = maxY;
-            this.vy = -Math.abs(this.vy) * this.bounce;
-            this.addRandomness();
-        }
-
-        // Maintain consistent speed
-        const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-        if (currentSpeed > 0) {
-            this.vx = (this.vx / currentSpeed) * this.speed;
-            this.vy = (this.vy / currentSpeed) * this.speed;
-        }
+        // Smooth easing to target position
+        this.x += (this.targetX - this.x) * this.easing;
+        this.y += (this.targetY - this.y) * this.easing;
 
         // Apply position
         this.bubble.style.transform = `translate(${this.x}px, ${this.y}px)`;
 
         requestAnimationFrame(() => this.animate());
-    }
-
-    addRandomness() {
-        // Add slight random variation to direction on bounce
-        this.vx += (Math.random() - 0.5) * 0.5;
-        this.vy += (Math.random() - 0.5) * 0.5;
     }
 }
 
