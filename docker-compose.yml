@@ -1,0 +1,9 @@
+services:
+  cchelloworld:
+    image: nginx:alpine
+    container_name: cchelloworld
+    restart: unless-stopped
+    ports:
+      - "8082:80"
+    volumes:
+      - ./public:/usr/share/nginx/html:ro
