@@ -6,16 +6,15 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     
     steps:
-      - name: Deploy to Pi5
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.PI5_HOST }}
-          username: ${{ secrets.PI5_USER }}
-          key: ${{ secrets.PI5_SSH_KEY }}
-          script: |
-            cd ~/portfolio
-            git pull origin main
-            docker-compose restart portfolio
+      - name: Pull latest code
+        run: |
+          cd ~/cchelloworld
+          git pull origin main
+      
+      - name: Restart container
+        run: |
+          cd ~/cchelloworld
+          docker-compose restart cchelloworld
