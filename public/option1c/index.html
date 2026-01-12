@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zegoe - Design-driven creative studio">
+    <title>Zegoe | Creative Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" data-cursor></div>
+    <div class="cursor-follower" data-cursor-follower></div>
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="/" data-cursor-text="Home">Zegoe</a>
+            </div>
+            <button class="burger-menu" data-burger aria-label="Toggle menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Full-Screen Navigation -->
+    <nav class="nav-overlay" data-nav-overlay>
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="#work" data-nav-link data-cursor-text="View">Work</a></li>
+                <li><a href="#about" data-nav-link data-cursor-text="Learn">About</a></li>
+                <li><a href="#services" data-nav-link data-cursor-text="Explore">Services</a></li>
+                <li><a href="#contact" data-nav-link data-cursor-text="Connect">Contact</a></li>
+            </ul>
+            <div class="nav-footer">
+                <div class="nav-social">
+                    <a href="#" data-cursor-text="Follow">Instagram</a>
+                    <a href="#" data-cursor-text="Follow">Twitter</a>
+                    <a href="#" data-cursor-text="Connect">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-line">Zegoe</span>
+                <span class="hero-line">Creative Studio</span>
+            </h1>
+            <p class="hero-subtitle">Shaping brands that resonate</p>
+        </div>
+        <div class="scroll-indicator" data-cursor-text="Scroll">
+            <span>Scroll to explore</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section class="work" id="work">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Selected Work</h2>
+                <p class="section-subtitle">Recent projects that define our craft</p>
+            </div>
+
+            <div class="projects-grid">
+                <article class="project-card" data-cursor-text="View">
+                    <div class="project-image">
+                        <div class="project-image-inner" style="background: linear-gradient(135deg, #d946ef, #f97316);"></div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Brand Identity</h3>
+                        <p class="project-category">Branding / Digital</p>
+                        <span class="project-year">2024</span>
+                    </div>
+                </article>
+
+                <article class="project-card" data-cursor-text="View">
+                    <div class="project-image">
+                        <div class="project-image-inner" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);"></div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Digital Platform</h3>
+                        <p class="project-category">Web Design / Development</p>
+                        <span class="project-year">2024</span>
+                    </div>
+                </article>
+
+                <article class="project-card" data-cursor-text="View">
+                    <div class="project-image">
+                        <div class="project-image-inner" style="background: linear-gradient(135deg, #84cc16, #22c55e);"></div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Visual System</h3>
+                        <p class="project-category">Design System / UI</p>
+                        <span class="project-year">2024</span>
+                    </div>
+                </article>
+
+                <article class="project-card" data-cursor-text="View">
+                    <div class="project-image">
+                        <div class="project-image-inner" style="background: linear-gradient(135deg, #ec4899, #f97316);"></div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Creative Direction</h3>
+                        <p class="project-category">Art Direction / Strategy</p>
+                        <span class="project-year">2024</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title gradient-text">Studio</h2>
+                    <p class="large-text">Zegoe is a creative studio bridging Atlanta and Saigon, crafting brands that resonate across cultures and markets.</p>
+                    <p>We bring strategic clarity to complex challenges, translating bold visions into tangible experiences that connect, inspire, and endure.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-number gradient-text">50+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number gradient-text">10+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number gradient-text">25+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title gradient-text">Services</h2>
+            <div class="services-list">
+                <div class="service-item" data-cursor-text="Explore">
+                    <span class="service-number gradient-text">01</span>
+                    <h3 class="service-title">Branding</h3>
+                    <p class="service-description">Strategic brand identity and positioning</p>
+                </div>
+                <div class="service-item" data-cursor-text="Explore">
+                    <span class="service-number gradient-text">02</span>
+                    <h3 class="service-title">Marketing Campaign</h3>
+                    <p class="service-description">Integrated campaigns that drive engagement</p>
+                </div>
+                <div class="service-item" data-cursor-text="Explore">
+                    <span class="service-number gradient-text">03</span>
+                    <h3 class="service-title">Assets</h3>
+                    <p class="service-description">Visual and digital asset creation</p>
+                </div>
+                <div class="service-item" data-cursor-text="Explore">
+                    <span class="service-number gradient-text">04</span>
+                    <h3 class="service-title">Websites</h3>
+                    <p class="service-description">Custom web experiences and digital platforms</p>
+                </div>
+                <div class="service-item" data-cursor-text="Explore">
+                    <span class="service-number gradient-text">05</span>
+                    <h3 class="service-title">Product Design</h3>
+                    <p class="service-description">User-centered design and prototyping</p>
+                </div>
+                <div class="service-item" data-cursor-text="Explore">
+                    <span class="service-number gradient-text">06</span>
+                    <h3 class="service-title">Sculpting</h3>
+                    <p class="service-description">3D modeling and digital sculpting</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="contact-title">Let's create something extraordinary</h2>
+                <a href="mailto:hello@zegoe.com" class="contact-email gradient-text" data-cursor-text="Email">hello@zegoe.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <p class="footer-brand">Zegoe</p>
+                    <p class="footer-tagline">Atlanta • Saigon</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#" data-cursor-text="Follow">Instagram</a></li>
+                            <li><a href="#" data-cursor-text="Follow">Twitter</a></li>
+                            <li><a href="#" data-cursor-text="Connect">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#" data-cursor-text="Read">Privacy</a></li>
+                            <li><a href="#" data-cursor-text="Read">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zegoe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
