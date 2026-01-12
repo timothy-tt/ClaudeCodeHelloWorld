@@ -3,221 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Design-driven creative portfolio">
-    <title>Creative Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
-    <script src="script.js" defer></script>
+    <meta name="description" content="Zegoe - Design-driven creative studio">
+    <title>Zegoe | Creative Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+        }
+
+        .header {
+            padding: clamp(30px, 5vw, 60px) clamp(20px, 5vw, 80px);
+        }
+
+        .logo {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: #808080;
+            margin-top: 5px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(20px, 5vw, 80px);
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 40px);
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        .option-card {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            border: 1px solid #222;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: clamp(30px, 4vw, 50px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+        }
+
+        .option-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .option-card:hover {
+            border-color: #fff;
+            transform: translateY(-10px);
+        }
+
+        .option-number {
+            position: relative;
+            z-index: 1;
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: #808080;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .option-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .option-title {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .option-description {
+            font-size: clamp(14px, 2vw, 16px);
+            color: #808080;
+            line-height: 1.6;
+        }
+
+        .option-card:nth-child(1) {
+            --gradient: linear-gradient(135deg, #d946ef, #f97316);
+        }
+
+        .option-card:nth-child(2) {
+            --gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+
+        .option-card:nth-child(3) {
+            --gradient: linear-gradient(135deg, #84cc16, #22c55e);
+        }
+
+        .footer {
+            padding: clamp(20px, 3vw, 40px) clamp(20px, 5vw, 80px);
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #808080;
+        }
+
+        .footer-locations {
+            font-size: 12px;
+            color: #808080;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 768px) {
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor" data-cursor></div>
-    <div class="cursor-follower" data-cursor-follower></div>
-
-    <!-- Navigation -->
     <header class="header">
-        <div class="header-container">
-            <div class="logo">
-                <a href="/" data-cursor-text="Home">Portfolio</a>
-            </div>
-            <button class="burger-menu" data-burger aria-label="Toggle menu">
-                <span class="burger-line"></span>
-                <span class="burger-line"></span>
-                <span class="burger-line"></span>
-            </button>
-        </div>
+        <div class="logo">Zegoe</div>
+        <div class="tagline">Design-Driven Creative Studio</div>
     </header>
 
-    <!-- Full-Screen Navigation -->
-    <nav class="nav-overlay" data-nav-overlay>
-        <div class="nav-content">
-            <ul class="nav-links">
-                <li><a href="#work" data-nav-link data-cursor-text="View">Work</a></li>
-                <li><a href="#about" data-nav-link data-cursor-text="Learn">About</a></li>
-                <li><a href="#services" data-nav-link data-cursor-text="Explore">Services</a></li>
-                <li><a href="#contact" data-nav-link data-cursor-text="Connect">Contact</a></li>
-            </ul>
-            <div class="nav-footer">
-                <div class="nav-social">
-                    <a href="#" data-cursor-text="Follow">Instagram</a>
-                    <a href="#" data-cursor-text="Follow">Twitter</a>
-                    <a href="#" data-cursor-text="Connect">LinkedIn</a>
+    <main class="container">
+        <div class="options">
+            <a href="option1/index.html" class="option-card">
+                <div class="option-number">01</div>
+                <div class="option-content">
+                    <h2 class="option-title">Dark<br>Elegance</h2>
+                    <p class="option-description">High-contrast minimalism with sophisticated black aesthetics</p>
                 </div>
-            </div>
-        </div>
-    </nav>
+            </a>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-canvas" data-canvas></div>
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="hero-line">Design-Driven</span>
-                <span class="hero-line">Creative Studio</span>
-            </h1>
-            <p class="hero-subtitle">Crafting digital experiences that matter</p>
-        </div>
-        <div class="scroll-indicator" data-cursor-text="Scroll">
-            <span>Scroll to explore</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
-
-    <!-- Work Section -->
-    <section class="work" id="work">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Selected Work</h2>
-                <p class="section-subtitle">Recent projects that define our craft</p>
-            </div>
-
-            <div class="projects-grid">
-                <article class="project-card" data-cursor-text="View">
-                    <div class="project-image">
-                        <div class="project-image-inner" style="background: linear-gradient(135deg, #d946ef, #f97316);"></div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Brand Identity</h3>
-                        <p class="project-category">Branding / Digital</p>
-                        <span class="project-year">2024</span>
-                    </div>
-                </article>
-
-                <article class="project-card" data-cursor-text="View">
-                    <div class="project-image">
-                        <div class="project-image-inner" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);"></div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Digital Platform</h3>
-                        <p class="project-category">Web Design / Development</p>
-                        <span class="project-year">2024</span>
-                    </div>
-                </article>
-
-                <article class="project-card" data-cursor-text="View">
-                    <div class="project-image">
-                        <div class="project-image-inner" style="background: linear-gradient(135deg, #84cc16, #22c55e);"></div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Visual System</h3>
-                        <p class="project-category">Design System / UI</p>
-                        <span class="project-year">2024</span>
-                    </div>
-                </article>
-
-                <article class="project-card" data-cursor-text="View">
-                    <div class="project-image">
-                        <div class="project-image-inner" style="background: linear-gradient(135deg, #ec4899, #f97316);"></div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Creative Direction</h3>
-                        <p class="project-category">Art Direction / Strategy</p>
-                        <span class="project-year">2024</span>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text">
-                    <h2 class="section-title">Studio</h2>
-                    <p class="large-text">We are a design-driven creative studio focused on crafting exceptional digital experiences through strategic thinking and meticulous execution.</p>
-                    <p>Our approach combines innovative design with technical excellence, ensuring every project delivers both aesthetic beauty and functional precision.</p>
+            <a href="option2/index.html" class="option-card">
+                <div class="option-number">02</div>
+                <div class="option-content">
+                    <h2 class="option-title">Light<br>Refinement</h2>
+                    <p class="option-description">Airy whitespace with clean, refined typography</p>
                 </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Projects Delivered</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">10+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">25+</span>
-                        <span class="stat-label">Happy Clients</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </a>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Services</h2>
-            <div class="services-list">
-                <div class="service-item" data-cursor-text="Explore">
-                    <span class="service-number">01</span>
-                    <h3 class="service-title">Brand Identity</h3>
-                    <p class="service-description">Strategic branding and visual identity systems</p>
+            <a href="option3/index.html" class="option-card">
+                <div class="option-number">03</div>
+                <div class="option-content">
+                    <h2 class="option-title">Bold<br>Gradients</h2>
+                    <p class="option-description">Vibrant Zune-inspired colors with dynamic energy</p>
                 </div>
-                <div class="service-item" data-cursor-text="Explore">
-                    <span class="service-number">02</span>
-                    <h3 class="service-title">Digital Design</h3>
-                    <p class="service-description">Web and mobile interface design</p>
-                </div>
-                <div class="service-item" data-cursor-text="Explore">
-                    <span class="service-number">03</span>
-                    <h3 class="service-title">Development</h3>
-                    <p class="service-description">Custom web development and implementation</p>
-                </div>
-                <div class="service-item" data-cursor-text="Explore">
-                    <span class="service-number">04</span>
-                    <h3 class="service-title">Creative Direction</h3>
-                    <p class="service-description">Art direction and creative strategy</p>
-                </div>
-            </div>
+            </a>
         </div>
-    </section>
+    </main>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2 class="contact-title">Let's create something extraordinary</h2>
-                <a href="mailto:hello@portfolio.com" class="contact-email" data-cursor-text="Email">hello@portfolio.com</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-info">
-                    <p class="footer-brand">Portfolio</p>
-                    <p class="footer-tagline">Design-driven creative studio</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Connect</h4>
-                        <ul>
-                            <li><a href="#" data-cursor-text="Follow">Instagram</a></li>
-                            <li><a href="#" data-cursor-text="Follow">Twitter</a></li>
-                            <li><a href="#" data-cursor-text="Connect">LinkedIn</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="#" data-cursor-text="Read">Privacy</a></li>
-                            <li><a href="#" data-cursor-text="Read">Terms</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Portfolio. All rights reserved.</p>
-            </div>
-        </div>
+        <div class="footer-text">&copy; 2024 Zegoe. All rights reserved.</div>
+        <div class="footer-locations">Atlanta • Saigon</div>
     </footer>
 </body>
 </html>
