@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Pull latest code
         run: |
-          cd ~/cchelloworld
+          cd ~/git/cchelloworld
           git pull origin main
       
       - name: Restart container
         run: |
-          cd ~/cchelloworld
+          cd ~/git/cchelloworld
           docker-compose restart cchelloworld
