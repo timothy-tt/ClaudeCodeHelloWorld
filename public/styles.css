@@ -9,14 +9,24 @@
 }
 
 :root {
-    --primary-color: #6366f1;
-    --secondary-color: #8b5cf6;
+    /* Zune Gradient Colors */
+    --zune-magenta: #d946ef;
+    --zune-pink: #ec4899;
+    --zune-orange: #f97316;
+    --zune-lime: #84cc16;
+    --zune-green: #22c55e;
+    --zune-purple: #a855f7;
+    --zune-blue: #3b82f6;
+
+    /* Primary Zune palette */
+    --primary-color: #d946ef;
+    --secondary-color: #f97316;
     --text-dark: #1f2937;
     --text-light: #6b7280;
-    --bg-light: #f9fafb;
+    --bg-light: #fafafa;
     --white: #ffffff;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+    --shadow: 0 10px 30px rgba(217, 70, 239, 0.15);
+    --shadow-lg: 0 20px 60px rgba(217, 70, 239, 0.25);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -133,10 +143,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    /* Iconic Zune magenta to orange gradient */
     background: linear-gradient(135deg,
-        rgba(99, 102, 241, 0.75) 0%,
-        rgba(139, 92, 246, 0.65) 50%,
-        rgba(249, 250, 251, 0.85) 100%);
+        rgba(217, 70, 239, 0.85) 0%,
+        rgba(236, 72, 153, 0.75) 35%,
+        rgba(249, 115, 22, 0.8) 100%);
     z-index: 1;
 }
 
@@ -160,11 +171,12 @@ body {
 }
 
 .highlight {
-    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    /* Zune lime green gradient for text highlight */
+    background: linear-gradient(135deg, var(--zune-lime), var(--zune-green));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .hero-subtitle {
@@ -202,12 +214,12 @@ body {
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--white);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 15px rgba(217, 70, 239, 0.4);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 6px 20px rgba(217, 70, 239, 0.5);
 }
 
 .btn-secondary {
